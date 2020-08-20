@@ -1,0 +1,26 @@
+from pyknow import *
+class plants(Fact):
+    pass
+class patient_plant(KnowledgeEngine):
+    @ Rule( plants( temp="high", humidity="normal" , tuber_color = "reddish-brown" , tuper = "spots" ) )
+    def case1(self):
+        print("The plan has black heart")
+
+    @ Rule( plants( temp = "low" , humidity = "high" , tuber_color ="normal" , tuper ="spots" ) )
+    def case2(self):
+        print("the plant has Late blight")
+
+    @ Rule( plants( temp ="high" , humidity ="normal" , tuber_color ="dry" , tuper = "circle" ) )
+    def case3(self):
+        print("the plant has dry rot")
+
+    @ Rule( plants( temp = "normal" , humidity = "normal" , tuber_color = "brown" , tuper = "wrinkles" ) )
+    def case3(self):
+        print ( "the plant has early blight" )
+engine = patient_plant()
+engine.reset()
+engine.declare(plants(temp = input("The Temp is high or normal or low ?"),
+    humidity = input("the humidity is high or normal ?"),
+    tuber_color = input("the tuber is reddish-brown or brown or normal or dry ? "),
+    tuper = input("the tuper has spots or circle or wrinkles ?") ))
+engine.run()
